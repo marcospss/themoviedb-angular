@@ -1,0 +1,9 @@
+@use 'base/reset';
+@use 'base/settings';
+@use 'base/grid';
+
+.main-content {
+  width: 100%;
+  min-height: 90vh;
+  height: auto;
+}
