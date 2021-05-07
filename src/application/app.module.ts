@@ -5,10 +5,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { RootComponent } from './root.component';
 
 import { SharedModule } from '@application/shared/shared.module';
-
+import { InfrastructureModule } from '@infrastructure/infrastructure.module';
 @NgModule({
   declarations: [RootComponent],
-  imports: [BrowserModule, AppRoutingModule, SharedModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    SharedModule,
+    InfrastructureModule.forRoot(),
+  ],
   providers: [],
   bootstrap: [RootComponent],
 })
