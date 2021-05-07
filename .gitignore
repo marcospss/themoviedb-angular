@@ -47,3 +47,5 @@ Thumbs.db
 
 # Vars and Keys
 .env
+src/infrastructure/environments/environment.prod.ts
+src/infrastructure/environments/environment.ts
