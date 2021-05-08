@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { NotFoundComponent } from '@views/not-found/not-found.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -10,6 +12,10 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
   },
 ];
 
