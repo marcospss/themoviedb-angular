@@ -1,0 +1,23 @@
+<div class="collection" *ngIf="popular$ | async; let popular; else: loading">
+  <h1 class="collection-title-section">Popular Movies</h1>
+  <div class="collection-popular-list">
+    <article
+      class="collection-popular-item"
+      *ngFor="
+        let item of popular?.results;
+        let indexItem = index;
+        trackBy: trackByFn
+      "
+    >
+      <app-card-full-size
+        [media]="item"
+        [showOverview]="indexItem === 0 || indexItem > 4"
+        [indexItem]="indexItem"
+      >
+      </app-card-full-size>
+    </article>
+  </div>
+</div>
+<ng-template class="wrapper-loading" #loading>
+  <app-loading></app-loading>
+</ng-template>

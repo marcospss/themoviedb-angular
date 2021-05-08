@@ -2,8 +2,23 @@
 @use 'base/settings';
 @use 'base/grid';
 
-.main-content {
+app-root,
+app-header,
+app-footer {
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  justify-content: start;
+  align-items: flex-start;
   width: 100%;
-  min-height: 90vh;
+}
+
+.main-content {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
   height: auto;
+  margin-top: 5rem;
 }

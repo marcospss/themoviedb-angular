@@ -1,0 +1,21 @@
+<header>
+  <figure>
+    <img
+      [src]="helpersService.mediaImage(media.backdrop_path, sizeImage)"
+      [alt]="media.title"
+    />
+    <figcaption>{{ media.title }}</figcaption>
+  </figure>
+  <h1>
+    <a [routerLink]="['/details/movie', media.id]">
+      {{ media.title }}
+    </a>
+  </h1>
+</header>
+<p *ngIf="showOverview">
+  <a [routerLink]="['/details/movie', media.id]">
+    {{
+      indexItem === 0 ? media.overview : helpersService.overview(media.overview)
+    }}
+  </a>
+</p>

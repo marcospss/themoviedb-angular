@@ -9,11 +9,12 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { CommonService } from './services/common.service';
 import { MoviesService } from './services/movies.service';
+import { HelpersService } from './services/helpers.service';
 
 @NgModule({
   declarations: [],
   imports: [CommonModule, HttpClientModule],
-  providers: [CommonService, MoviesService],
+  providers: [CommonService, MoviesService, HelpersService],
 })
 export class InfrastructureModule {
   static forRoot(): ModuleWithProviders<InfrastructureModule> {
