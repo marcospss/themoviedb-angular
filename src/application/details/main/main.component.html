@@ -1,0 +1,47 @@
+<article
+  class="media-details"
+  *ngIf="details$ | async; let details; else: loading"
+>
+  <nav>
+    <ul class="breadcrumb">
+      <li>
+        <a routerLink="/">Home</a>
+      </li>
+      <li>
+        <a>{{ details.title }}</a>
+      </li>
+    </ul>
+  </nav>
+
+  <figure>
+    <img
+      class="full-size"
+      [src]="helpersService.mediaImage(details.backdrop_path!, backdropSize)"
+      [alt]="details.title"
+    />
+  </figure>
+  <header>
+    <figure>
+      <img
+        [src]="helpersService.mediaImage(details.poster_path!, posterSize)"
+        [alt]="details.title"
+      />
+    </figure>
+    <div class="info">
+      <h1 class="title">{{ details.title }}</h1>
+      <p class="category">{{ helpersService.genres(details.genres) }}</p>
+      <span class="runtime"
+        >Length:
+        {{ helpersService.convertMinutesToTime(details.runtime) }}</span
+      >
+    </div>
+  </header>
+  <p class="overview">{{ details.overview }}</p>
+  <hr />
+  <!-- <app-recommendations [mediaId]="details.id.toString()"></app-recommendations> -->
+  <hr />
+  <!--app-similar></app-similar-->
+</article>
+<ng-template class="wrapper-loading" #loading>
+  <app-loading></app-loading>
+</ng-template>

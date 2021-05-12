@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { environment } from '@infrastructure/environments/environment';
+import { Genre } from '@infrastructure/models';
 
 @Injectable()
 export class HelpersService {
@@ -15,6 +16,10 @@ export class HelpersService {
       return 'assets/images/default-image.png';
     }
     return `${environment.imageApi.secure_base_url}/${size}${path}`;
+  }
+
+  genres(genres: Genre[]): string {
+    return genres.map((genre: Genre) => genre.name).join(' | ');
   }
 
   overview(overview: string): string {
