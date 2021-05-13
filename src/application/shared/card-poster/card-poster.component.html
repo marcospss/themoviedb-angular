@@ -1,0 +1,19 @@
+<div class="card-poster-collection">
+  <header>
+    <figure>
+      <a [routerLink]="['/details/movie', media.id]">
+        <img
+          [src]="helpersService.mediaImage(media.poster_path!, posterSize)"
+          [alt]="media.title"
+        />
+      </a>
+    </figure>
+  </header>
+  <div class="content">
+    <h2 class="title">{{ media.title }}</h2>
+    <p class="overview">{{ media.overview }}</p>
+    <div class="learn-more">
+      <a [routerLink]="['/details/movie', media.id]">Learn More</a>
+    </div>
+  </div>
+</div>

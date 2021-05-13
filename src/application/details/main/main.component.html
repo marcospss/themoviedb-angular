@@ -38,9 +38,19 @@
   </header>
   <p class="overview">{{ details.overview }}</p>
   <hr />
-  <!-- <app-recommendations [mediaId]="details.id.toString()"></app-recommendations> -->
-  <hr />
-  <!--app-similar></app-similar-->
+  <div
+    class="recommendations"
+    *ngIf="recommendations$ | async; let recommendations"
+  >
+    <h1 class="recommendations-title">Recommendations Movies</h1>
+    <div class="recommendations-grid-list">
+      <article
+        *ngFor="let item of recommendations?.results; trackBy: trackByFn"
+      >
+        <app-card-poster [media]="item"> </app-card-poster>
+      </article>
+    </div>
+  </div>
 </article>
 <ng-template class="wrapper-loading" #loading>
   <app-loading></app-loading>

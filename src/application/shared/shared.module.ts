@@ -6,12 +6,14 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoadingComponent } from './loading/loading.component';
 import { CardFullSizeComponent } from './card-full-size/card-full-size.component';
+import { CardPosterComponent } from './card-poster/card-poster.component';
 
 const components = [
   HeaderComponent,
   FooterComponent,
   LoadingComponent,
   CardFullSizeComponent,
+  CardPosterComponent,
 ];
 
 @NgModule({

@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  DoCheck,
   OnDestroy,
   OnInit,
 } from '@angular/core';
@@ -8,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { MoviesDetails } from '@infrastructure/models';
+import { MoviesDetails, MovieResults, MovieItem } from '@infrastructure/models';
 import { MoviesService, HelpersService } from '@infrastructure/services';
 import { Backdrop, Poster } from '@infrastructure/enums';
 
@@ -18,11 +19,12 @@ import { Backdrop, Poster } from '@infrastructure/enums';
   styleUrls: ['./main.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MainComponent implements OnInit, OnDestroy {
+export class MainComponent implements OnInit, OnDestroy, DoCheck {
   private subscriptionRoute!: Subscription;
   mediaId!: string;
   mediaType!: string;
   details$!: Observable<MoviesDetails>;
+  recommendations$!: Observable<MovieResults>;
   backdropSize: string = Backdrop.w780;
   posterSize: string = Poster.w154;
 
@@ -37,6 +39,9 @@ export class MainComponent implements OnInit, OnDestroy {
       .pipe(
         map(({ mediaId, mediaType }) => {
           this.details$ = this.moviesService.details({ mediaId });
+          this.recommendations$ = this.moviesService.recommendations({
+            mediaId,
+          });
         })
       )
       .subscribe();
@@ -44,5 +49,13 @@ export class MainComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscriptionRoute.unsubscribe();
+  }
+
+  ngDoCheck(): void {
+    this.helpersService.scrollTopPage();
+  }
+
+  trackByFn(_: any, item: MovieItem) {
+    return item?.id;
   }
 }

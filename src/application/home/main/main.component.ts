@@ -26,7 +26,7 @@ export class MainComponent implements OnInit {
     // )
   }
 
-  trackByFn(index: number, item: MovieItem) {
+  trackByFn(_: any, item: MovieItem) {
     return item?.id;
   }
 }
