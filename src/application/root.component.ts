@@ -10,6 +10,8 @@ import { Component } from '@angular/core';
       </div>
     </main>
     <app-footer></app-footer>
+    <app-modal></app-modal>
+    <!-- <app-loading></app-loading> -->
   `,
 })
 export class RootComponent {}

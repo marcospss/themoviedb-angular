@@ -7,6 +7,8 @@ import { FooterComponent } from './footer/footer.component';
 import { LoadingComponent } from './loading/loading.component';
 import { CardFullSizeComponent } from './card-full-size/card-full-size.component';
 import { CardPosterComponent } from './card-poster/card-poster.component';
+import { ModalComponent } from './modal/modal.component';
+import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 
 const components = [
   HeaderComponent,
@@ -14,6 +16,8 @@ const components = [
   LoadingComponent,
   CardFullSizeComponent,
   CardPosterComponent,
+  ModalComponent,
+  ErrorDialogComponent,
 ];
 
 @NgModule({

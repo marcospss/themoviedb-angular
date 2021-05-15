@@ -1,57 +1,61 @@
 <article
   class="media-details"
-  *ngIf="details$ | async; let details; else: loading"
+  *ngIf="details$ | async; let details; else: isLoading"
 >
-  <nav>
-    <ul class="breadcrumb">
-      <li>
-        <a routerLink="/">Home</a>
-      </li>
-      <li>
-        <a>{{ details.title }}</a>
-      </li>
-    </ul>
-  </nav>
+  <ng-template [ngIf]="!hasError">
+    <nav>
+      <ul class="breadcrumb">
+        <li>
+          <a routerLink="/">Home</a>
+        </li>
+        <li>
+          <a>{{ details.title }}</a>
+        </li>
+      </ul>
+    </nav>
 
-  <figure>
-    <img
-      class="full-size"
-      [src]="helpersService.mediaImage(details.backdrop_path!, backdropSize)"
-      [alt]="details.title"
-    />
-  </figure>
-  <header>
     <figure>
       <img
-        [src]="helpersService.mediaImage(details.poster_path!, posterSize)"
+        class="full-size"
+        [src]="helpersService.mediaImage(details.backdrop_path!, backdropSize)"
         [alt]="details.title"
       />
     </figure>
-    <div class="info">
-      <h1 class="title">{{ details.title }}</h1>
-      <p class="category">{{ helpersService.genres(details.genres) }}</p>
-      <span class="runtime"
-        >Length:
-        {{ helpersService.convertMinutesToTime(details.runtime) }}</span
-      >
+    <header>
+      <figure>
+        <img
+          [src]="helpersService.mediaImage(details.poster_path!, posterSize)"
+          [alt]="details.title"
+        />
+      </figure>
+      <div class="info">
+        <h1 class="title">{{ details.title }}</h1>
+        <p class="category">{{ helpersService.genres(details.genres) }}</p>
+        <span class="runtime"
+          >Length:
+          {{ helpersService.convertMinutesToTime(details.runtime) }}</span
+        >
+      </div>
+    </header>
+    <p class="overview">{{ details.overview }}</p>
+    <hr />
+    <div
+      class="recommendations"
+      *ngIf="recommendations$ | async; let recommendations"
+    >
+      <h1 class="recommendations-title">Recommendations Movies</h1>
+      <div class="recommendations-grid-list">
+        <article
+          *ngFor="let item of recommendations?.results; trackBy: trackByFn"
+        >
+          <app-card-poster [media]="item"> </app-card-poster>
+        </article>
+      </div>
     </div>
-  </header>
-  <p class="overview">{{ details.overview }}</p>
-  <hr />
-  <div
-    class="recommendations"
-    *ngIf="recommendations$ | async; let recommendations"
-  >
-    <h1 class="recommendations-title">Recommendations Movies</h1>
-    <div class="recommendations-grid-list">
-      <article
-        *ngFor="let item of recommendations?.results; trackBy: trackByFn"
-      >
-        <app-card-poster [media]="item"> </app-card-poster>
-      </article>
-    </div>
-  </div>
+  </ng-template>
+  <app-error-dialog *ngIf="hasError"></app-error-dialog>
 </article>
-<ng-template class="wrapper-loading" #loading>
+
+<ng-template #isLoading>
   <app-loading></app-loading>
 </ng-template>

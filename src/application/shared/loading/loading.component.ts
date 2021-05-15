@@ -1,49 +1,67 @@
-import { Component } from '@angular/core';
-
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { LoadingDialogService } from '@infrastructure/services';
 @Component({
   selector: 'app-loading',
   template: `
     <div class="loading-container">
       <div class="container-animation">
-          <div class="lds-dual-ring"></div>
-          Loading...
+        <div class="lds-dual-ring"></div>
+        Loading Data... <br />Please wait a moment
       </div>
     </div>
   `,
   styles: [
     `
-    .loading-container {
+      .loading-container {
+        position: fixed;
         display: flex;
-        min-height: 60vh;
-        flex-direction: column;
         justify-content: center;
-        color: #131a20;
-        text-transform: uppercase;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica, sans-serif;
-        font-size: 1.5em;
-        text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-    }
-
-    .container-animation {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
         align-items: center;
-        justify-content: center;
-        width: 100%;
-        height: 100%;
-        text-align: center;
-    }
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: #00000070;
+        z-index: 1000;
+        overflow: hidden;
+        text-transform: uppercase;
+        text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        color: #131a20;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          Oxygen-Sans, Ubuntu, Cantarell, Helvetica, sans-serif;
+        font-size: 1.4rem;
+      }
 
-    .lds-dual-ring {
+      .show-loading {
+        display: flex;
+      }
+
+      .container-animation {
+        position: relative;
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+        width: auto;
+        height: auto;
+        background-color: #ffffff90;
+        padding: 2rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        border-radius: 0.5rem;
+        overflow: hidden;
+        text-align: center;
+      }
+
+      .lds-dual-ring {
         display: inline-block;
         width: 64px;
         height: 64px;
         padding-bottom: 1em;
-    }
+      }
 
-    .lds-dual-ring:after {
-        content: " ";
+      .lds-dual-ring:after {
+        content: ' ';
         display: block;
         width: 46px;
         height: 46px;
@@ -52,20 +70,20 @@ import { Component } from '@angular/core';
         border: 8px solid #131a20;
         border-color: #131a20 transparent #131a20 transparent;
         animation: lds-dual-ring 1.2s linear infinite;
-    }
+      }
 
-    @keyframes lds-dual-ring {
+      @keyframes lds-dual-ring {
         0% {
-            transform: rotate(0deg);
+          transform: rotate(0deg);
         }
         100% {
-            transform: rotate(360deg);
+          transform: rotate(360deg);
         }
-    }
+      }
     `,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoadingComponent {
-
-  constructor() { }
+  constructor(public loadingDialogService: LoadingDialogService) {}
 }

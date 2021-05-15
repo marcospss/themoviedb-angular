@@ -7,11 +7,12 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 
 import { MoviesDetails, MovieResults, MovieItem } from '@infrastructure/models';
 import { MoviesService, HelpersService } from '@infrastructure/services';
 import { Backdrop, Poster } from '@infrastructure/enums';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-main',
@@ -27,6 +28,7 @@ export class MainComponent implements OnInit, OnDestroy, DoCheck {
   recommendations$!: Observable<MovieResults>;
   backdropSize: string = Backdrop.w780;
   posterSize: string = Poster.w154;
+  hasError: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -38,7 +40,13 @@ export class MainComponent implements OnInit, OnDestroy, DoCheck {
     this.subscriptionRoute = this.route.params
       .pipe(
         map(({ mediaId, mediaType }) => {
-          this.details$ = this.moviesService.details({ mediaId });
+          this.details$ = this.moviesService.details({ mediaId }).pipe(
+            catchError((error) => {
+              this.hasError = true;
+              console.info('hasError', this.hasError);
+              return of({} as MoviesDetails);
+            })
+          );
           this.recommendations$ = this.moviesService.recommendations({
             mediaId,
           });

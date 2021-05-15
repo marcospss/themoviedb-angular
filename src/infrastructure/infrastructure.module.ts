@@ -7,14 +7,21 @@ import {
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
+import { ErrorHandlerModule } from './error-handler/error-handler.module';
 import { CommonService } from './services/common.service';
 import { MoviesService } from './services/movies.service';
 import { HelpersService } from './services/helpers.service';
+import { LoadingDialogService } from './services/loading-dialog.service';
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, HttpClientModule],
-  providers: [CommonService, MoviesService, HelpersService],
+  imports: [CommonModule, HttpClientModule, ErrorHandlerModule],
+  providers: [
+    CommonService,
+    MoviesService,
+    HelpersService,
+    LoadingDialogService,
+  ],
 })
 export class InfrastructureModule {
   static forRoot(): ModuleWithProviders<InfrastructureModule> {
