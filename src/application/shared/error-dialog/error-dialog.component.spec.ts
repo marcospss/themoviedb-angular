@@ -2,15 +2,14 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ErrorDialogComponent } from './error-dialog.component';
 
-describe('ErrorDialogComponent', () => {
+describe('# Error Dialog Component', () => {
   let component: ErrorDialogComponent;
   let fixture: ComponentFixture<ErrorDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ErrorDialogComponent ]
-    })
-    .compileComponents();
+      declarations: [ErrorDialogComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('ErrorDialogComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create Error Dialog Component', () => {
     expect(component).toBeTruthy();
   });
 });
