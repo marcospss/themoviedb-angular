@@ -1,7 +1,9 @@
-import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MovieItem } from '@infrastructure/models';
+import { RouterTestingModule } from '@angular/router/testing';
+import { DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
+import { MovieItem } from '@infrastructure/models';
 import { HelpersService } from '@infrastructure/services';
 import { CardFullSizeComponent } from './card-full-size.component';
 
@@ -31,6 +33,7 @@ describe('# Card Full Size Component', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
       declarations: [CardFullSizeComponent],
       providers: [HelpersService],
     }).compileComponents();
@@ -41,10 +44,29 @@ describe('# Card Full Size Component', () => {
     fixture = TestBed.createComponent(CardFullSizeComponent);
     component = fixture.componentInstance;
     component.media = movieDetailsMock;
+    component.showOverview = true;
+    el = fixture.debugElement;
     fixture.detectChanges();
   });
 
   it('should create Card Full Size Component', () => {
     expect(component).toBeTruthy();
+  });
+  it('should display the info media', () => {
+    const title = el.query(By.css('h1'));
+    const link = el.query(By.css('a'));
+    const image = el.query(By.css('img'));
+    const overview = el.query(By.css('p'));
+
+    expect(title.nativeElement.textContent.trim()).toBe(movieDetailsMock.title);
+    expect(link.nativeElement.href).toContain(
+      `/details/movie/${movieDetailsMock.id}`
+    );
+    expect(image.nativeElement.src).toBe(
+      helpersService.mediaImage(movieDetailsMock.backdrop_path, 'w300')
+    );
+    expect(overview.nativeElement.textContent.trim()).toBe(
+      helpersService.overview(movieDetailsMock.overview)
+    );
   });
 });

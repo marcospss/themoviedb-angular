@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 import { HelpersService } from '@infrastructure/services';
 import { MovieItem } from '@infrastructure/models';
@@ -26,9 +29,11 @@ describe('# Card Poster Component', () => {
   let component: CardPosterComponent;
   let fixture: ComponentFixture<CardPosterComponent>;
   let helpersService: HelpersService;
+  let el: DebugElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
       declarations: [CardPosterComponent],
       providers: [HelpersService],
     }).compileComponents();
@@ -39,10 +44,29 @@ describe('# Card Poster Component', () => {
     fixture = TestBed.createComponent(CardPosterComponent);
     component = fixture.componentInstance;
     component.media = movieDetailsMock;
+    el = fixture.debugElement;
     fixture.detectChanges();
   });
 
   it('should create Card Poster Component', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should display the info media', () => {
+    const title = el.query(By.css('h2'));
+    const image = el.query(By.css('img'));
+    const overview = el.query(By.css('p'));
+    const link = el.query(By.css('a'));
+
+    expect(title.nativeElement.textContent.trim()).toBe(movieDetailsMock.title);
+    expect(image.nativeElement.src).toBe(
+      helpersService.mediaImage(movieDetailsMock.poster_path, 'w154')
+    );
+    expect(overview.nativeElement.textContent.trim()).toBe(
+      movieDetailsMock.overview
+    );
+    expect(link.nativeElement.href).toContain(
+      `/details/movie/${movieDetailsMock.id}`
+    );
   });
 });
