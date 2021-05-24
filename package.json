@@ -6,7 +6,7 @@
     "setEnv": "ts-node ./src/assets/scripts/setEnv.ts",
     "start": "npm run setEnv -- --environment=dev && ng serve",
     "build": "npm run setEnv -- --environment=prod && ng build",
-    "test": "npm run setEnv -- --environment=dev && ng test",
+    "test": "npm run setEnv -- --environment=dev && ng test --watch false --browsers ChromeHeadless --code-coverage",
     "lint": "ng lint"
   },
   "private": true,

@@ -3,11 +3,13 @@ import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
-
-import { MoviesService, HelpersService } from '@infrastructure/services';
-import { MainComponent } from './main.component';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
+
+import { MoviesService, HelpersService } from '@infrastructure/services';
+import { MoviesDetails } from '@infrastructure/models';
+import { MainComponent } from './main.component';
+import { movieDetailsMock } from '@mocks';
 
 describe('# DETAILS', () => {
   let component: MainComponent;
@@ -45,7 +47,18 @@ describe('# DETAILS', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create Details Main', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should display the details media', (done) => {
+    moviesService
+      .details({ mediaId: '460465' })
+      .subscribe((data: MoviesDetails) => {
+        expect(data?.id).toBe(460465);
+        expect(data?.genres?.length).toBe(4);
+        expect(data?.title).toBe('Mortal Kombat');
+      });
+    done();
   });
 });

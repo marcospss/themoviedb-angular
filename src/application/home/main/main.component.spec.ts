@@ -5,7 +5,9 @@ import {
 } from '@angular/common/http/testing';
 
 import { MoviesService, HelpersService } from '@infrastructure/services';
+import { MovieResults } from '@infrastructure/models';
 import { MainComponent } from './main.component';
+import { movieResultsMock } from '@mocks';
 
 describe('# HOME ', () => {
   let component: MainComponent;
@@ -31,7 +33,17 @@ describe('# HOME ', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create Home Main', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('returned Observable should match the right data', (done) => {
+    moviesService.popular({ page: 1 }).subscribe((data: MovieResults) => {
+      expect(data.page).toBe(1);
+      expect(data.results?.length).toBe(1);
+      expect(data.total_pages).toBe(500);
+      expect(data.total_results).toBe(10000);
+    });
+    done();
   });
 });
