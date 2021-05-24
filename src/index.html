@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>The Movie DB Angular</title>
-    <base href="/" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="preconnect" href="https://api.themoviedb.org/3/" />
-    <link rel="preconnect" href="https://image.tmdb.org/t/p/" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <base href="/"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="preconnect" href="https://api.themoviedb.org/3/"/>
+    <link rel="preconnect" href="https://image.tmdb.org/t/p/"/>
+    <link rel="icon" type="image/x-icon" href="favicon.ico"/>
     <style>
       .home-loading-container {
         position: fixed;
@@ -74,15 +74,18 @@
         }
       }
     </style>
-  </head>
+    <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#1976d2">
+</head>
   <body>
     <app-root>
       <div class="home-loading-container">
         <div class="home-container-animation">
           <div class="home-lds-dual-ring"></div>
-          Loading Data... <br />Please wait a moment
+          Loading Data... <br/>Please wait a moment
         </div>
       </div>
     </app-root>
-  </body>
+    <noscript>Please enable JavaScript to continue using this application.</noscript>
+</body>
 </html>
