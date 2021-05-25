@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { RootComponent } from './root.component';
@@ -11,7 +12,7 @@ import { environment } from '@infrastructure/environments/environment';
 @NgModule({
   declarations: [RootComponent],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     SharedModule,
     InfrastructureModule.forRoot(),
@@ -21,6 +22,7 @@ import { environment } from '@infrastructure/environments/environment';
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000',
     }),
+    RouterModule,
   ],
   providers: [],
   bootstrap: [RootComponent],

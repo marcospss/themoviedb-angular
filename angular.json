@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/themoviedb-angular",
+            "outputPath": "dist/themoviedb-angular/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -102,8 +102,43 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["tsconfig.app.json", "tsconfig.spec.json"],
+            "tsConfig": ["tsconfig.app.json","tsconfig.spec.json","tsconfig.server.json"],
             "exclude": ["**/node_modules/**"]
+          }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/themoviedb-angular/server",
+            "main": "src/main.server.ts",
+            "tsConfig": "tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "src/infrastructure/environments/environment.ts",
+                  "with": "src/infrastructure/environments/environment.prod.ts"
+                }
+              ],
+              "sourceMap": false,
+              "optimization": true
+            }
+          }
+        },
+        "app-shell": {
+          "builder": "@angular-devkit/build-angular:app-shell",
+          "options": {
+            "browserTarget": "themoviedb-angular:build",
+            "serverTarget": "themoviedb-angular:server",
+            "route": "shell"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "themoviedb-angular:build:production",
+              "serverTarget": "themoviedb-angular:server:production"
+            }
           }
         }
       }
