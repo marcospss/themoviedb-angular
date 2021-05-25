@@ -26,5 +26,27 @@
         ]
       }
     }
+  ],
+  "dataGroups": [
+    {
+      "name": "api.themoviedb.org",
+      "urls": ["https://api.themoviedb.org/3"],
+      "cacheConfig": {
+        "strategy": "freshness",
+        "timeout": "10s",
+        "maxAge": "1d",
+        "maxSize": 100
+      }
+    },
+    {
+      "name": "image.tmdb.org",
+      "urls": ["https://image.tmdb.org/t/p"],
+      "cacheConfig": {
+        "strategy": "freshness",
+        "timeout": "10s",
+        "maxAge": "1d",
+        "maxSize": 100
+      }
+    }
   ]
 }
