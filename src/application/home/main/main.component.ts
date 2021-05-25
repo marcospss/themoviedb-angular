@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SwPush, SwUpdate } from '@angular/service-worker';
 import { Observable } from 'rxjs';
 
 import { MovieItem, MovieResults, StatusErrors } from '@infrastructure/models';
@@ -12,9 +13,19 @@ import { MoviesService } from '@infrastructure/services/movies.service';
 export class MainComponent implements OnInit {
   error: StatusErrors = {};
   popular$!: Observable<MovieResults>;
-  constructor(private moviesService: MoviesService) {}
+  constructor(
+    private swUpdate: SwUpdate,
+    private moviesService: MoviesService
+  ) {}
 
   ngOnInit(): void {
+    if (this.swUpdate.isEnabled) {
+      this.swUpdate.available.subscribe(() => {
+        if (confirm('New version available. Load New Version?')) {
+          window.location.reload();
+        }
+      });
+    }
     this.moviePopularResults();
   }
 
