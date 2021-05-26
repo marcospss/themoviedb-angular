@@ -9,7 +9,7 @@ import { InfrastructureModule } from '@infrastructure/infrastructure.module';
 @NgModule({
   declarations: [RootComponent],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     SharedModule,
     InfrastructureModule.forRoot(),
