@@ -6,8 +6,7 @@ import { NotFoundComponent } from '@views/not-found/not-found.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
-    pathMatch: 'full',
+    loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
   },
   {
     path: 'home',
