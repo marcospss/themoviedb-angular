@@ -4,8 +4,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { environment } from '../environments/environment';
-import { MovieResults, MoviesDetails, ParamsUrl } from '../models';
+import { environment } from '@infrastructure/environments/environment';
+import { MovieResults, MoviesDetails, ParamsUrl } from '@infrastructure/models';
 
 @Injectable()
 export class MoviesService {

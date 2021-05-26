@@ -5,8 +5,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { environment } from '../environments/environment';
-import { Genres, Credits, ParamsUrl } from '../models';
+import { environment } from '@infrastructure/environments/environment';
+import { Genres, Credits, ParamsUrl } from '@infrastructure/models';
 
 @Injectable()
 export class CommonService {
