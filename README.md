@@ -17,5 +17,5 @@ Aplicação com Angular na versão 11
 ### pwa
 Aplicação com a implementação de PWA utilizando o pacote `@angular/service-worker`
 
-
-
+### universal
+Aplicação com a renderização do lado do servidor utilizando o pacote `@nguniversal/express-engine`
