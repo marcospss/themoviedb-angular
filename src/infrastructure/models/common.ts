@@ -55,3 +55,12 @@ export type Credits = {
   cast: Cast[];
   crew: Crew[];
 };
+
+export type MetaTags = {
+  urlPage: string;
+  title: string;
+  description: string;
+  imagePath: string;
+  imageSize: string;
+  isHomePage?: boolean | false;
+};

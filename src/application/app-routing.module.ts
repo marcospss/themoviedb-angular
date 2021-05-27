@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { NotFoundComponent } from '@views/not-found/not-found.component';
-// import { MediaResolver } from '@infrastructure/services';
+import { MediaResolver } from '@infrastructure/services';
 
 const routes: Routes = [
   {
@@ -17,9 +17,9 @@ const routes: Routes = [
     path: 'details/:mediaType/:mediaId',
     loadChildren: () =>
       import('./details/details.module').then((m) => m.DetailsModule),
-    // resolve: {
-    //   media: MediaResolver,
-    // },
+    resolve: {
+      media: MediaResolver,
+    },
   },
   {
     path: '**',

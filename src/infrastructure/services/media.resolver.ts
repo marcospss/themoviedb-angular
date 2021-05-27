@@ -20,10 +20,7 @@ export class MediaResolver implements Resolve<MoviesDetails> {
     private transferState: TransferState
   ) {}
 
-  resolve(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Observable<MoviesDetails> {
+  resolve(route: ActivatedRouteSnapshot): Observable<MoviesDetails> {
     const { mediaId, mediaType } = route.params;
     const MEDIA_KEY = makeStateKey<MoviesDetails>(`${mediaType}-${mediaId}`);
 

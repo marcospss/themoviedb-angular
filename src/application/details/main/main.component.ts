@@ -1,16 +1,14 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  DoCheck,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { Component, DoCheck, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 import { MoviesDetails, MovieResults, MovieItem } from '@infrastructure/models';
-import { MoviesService, HelpersService } from '@infrastructure/services';
+import {
+  MoviesService,
+  HelpersService,
+  MetaTagsService,
+} from '@infrastructure/services';
 import { Backdrop, Poster } from '@infrastructure/enums';
 import { of } from 'rxjs';
 
@@ -18,7 +16,6 @@ import { of } from 'rxjs';
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainComponent implements OnInit, OnDestroy, DoCheck {
   private subscriptionRoute!: Subscription;
@@ -33,17 +30,26 @@ export class MainComponent implements OnInit, OnDestroy, DoCheck {
   constructor(
     private route: ActivatedRoute,
     private moviesService: MoviesService,
-    public helpersService: HelpersService
+    public helpersService: HelpersService,
+    private metaTagsService: MetaTagsService
   ) {}
 
   ngOnInit(): void {
     this.subscriptionRoute = this.route.params
       .pipe(
-        map(({ mediaId, mediaType }) => {
+        map(({ mediaId }) => {
+          const { title, overview, backdrop_path } =
+            this.route.snapshot.data.media;
+          this.metaTagsService.generate({
+            urlPage: window.location.href,
+            title,
+            description: overview,
+            imagePath: backdrop_path,
+            imageSize: 'w780',
+          });
           this.details$ = this.moviesService.details({ mediaId }).pipe(
-            catchError((error) => {
+            catchError(() => {
               this.hasError = true;
-              console.info('hasError', this.hasError);
               return of({} as MoviesDetails);
             })
           );
