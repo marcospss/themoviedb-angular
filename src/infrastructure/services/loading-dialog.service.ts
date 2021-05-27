@@ -6,12 +6,10 @@ export class LoadingDialogService {
   constructor() {}
 
   showLoading(): boolean {
-    console.log('openLoading', this.opened);
     return !this.opened;
   }
 
   hideLoading(): boolean {
-    console.log('hideLoading', this.opened);
     return !this.opened;
   }
 }
