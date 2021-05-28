@@ -21,7 +21,7 @@ export class MainComponent implements OnInit, OnDestroy, DoCheck {
   private subscriptionRoute!: Subscription;
   mediaId!: string;
   mediaType!: string;
-  details$!: Observable<MoviesDetails>;
+  details!: MoviesDetails;
   recommendations$!: Observable<MovieResults>;
   backdropSize: string = Backdrop.w780;
   posterSize: string = Poster.w154;
@@ -47,12 +47,13 @@ export class MainComponent implements OnInit, OnDestroy, DoCheck {
             imagePath: backdrop_path,
             imageSize: 'w780',
           });
-          this.details$ = this.moviesService.details({ mediaId }).pipe(
-            catchError(() => {
-              this.hasError = true;
-              return of({} as MoviesDetails);
-            })
-          );
+          this.details = this.route.snapshot.data.media;
+          // this.details$ = this.moviesService.details({ mediaId }).pipe(
+          //   catchError(() => {
+          //     this.hasError = true;
+          //     return of({} as MoviesDetails);
+          //   })
+          // );
           this.recommendations$ = this.moviesService.recommendations({
             mediaId,
           });

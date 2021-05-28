@@ -1,7 +1,4 @@
-<article
-  class="media-details"
-  *ngIf="details$ | async; let details; else: isLoading"
->
+<article class="media-details" *ngIf="details">
   <ng-template [ngIf]="!hasError">
     <nav>
       <ul class="breadcrumb">
@@ -41,7 +38,7 @@
     <hr />
     <div
       class="recommendations"
-      *ngIf="recommendations$ | async; let recommendations"
+      *ngIf="recommendations$ | async; let recommendations; else: isLoading"
     >
       <h1 class="recommendations-title">Recommendations Movies</h1>
       <div class="recommendations-grid-list">
