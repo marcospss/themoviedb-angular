@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {
+  BrowserModule,
+  BrowserTransferStateModule,
+} from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { RootComponent } from './root.component';
@@ -10,6 +13,8 @@ import { InfrastructureModule } from '@infrastructure/infrastructure.module';
   declarations: [RootComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserModule,
+    BrowserTransferStateModule,
     AppRoutingModule,
     SharedModule,
     InfrastructureModule.forRoot(),
