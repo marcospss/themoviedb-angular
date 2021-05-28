@@ -8,7 +8,8 @@
     "build": "npm run setEnv -- --environment=prod && ng build",
     "test": "npm run setEnv -- --environment=dev && ng test --watch false --browsers ChromeHeadless --code-coverage",
     "lint": "ng lint",
-    "start:pwa": "ng build --prod && http-server -p 8080 -c-1 dist/themoviedb-angular"
+    "start:pwa": "ng build --prod && http-server -p 8080 -c-1 dist/themoviedb-angular",
+    "app-shell": "ng run themoviedb-angular:app-shell:production"
   },
   "private": true,
   "dependencies": {
