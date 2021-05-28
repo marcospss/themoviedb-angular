@@ -9,6 +9,7 @@ import { CardFullSizeComponent } from './card-full-size/card-full-size.component
 import { CardPosterComponent } from './card-poster/card-poster.component';
 import { ModalComponent } from './modal/modal.component';
 import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
+import { AlertsComponent } from './alerts/alerts.component';
 
 const components = [
   HeaderComponent,
@@ -18,6 +19,7 @@ const components = [
   CardPosterComponent,
   ModalComponent,
   ErrorDialogComponent,
+  AlertsComponent,
 ];
 
 @NgModule({

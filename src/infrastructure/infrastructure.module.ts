@@ -12,6 +12,7 @@ import { CommonService } from './services/common.service';
 import { MoviesService } from './services/movies.service';
 import { HelpersService } from './services/helpers.service';
 import { LoadingDialogService } from './services/loading-dialog.service';
+import { PwaHelpersService } from './services/pwa-helpers.service';
 
 @NgModule({
   declarations: [],
@@ -21,6 +22,7 @@ import { LoadingDialogService } from './services/loading-dialog.service';
     MoviesService,
     HelpersService,
     LoadingDialogService,
+    PwaHelpersService,
   ],
 })
 export class InfrastructureModule {
