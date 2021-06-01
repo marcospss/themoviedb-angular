@@ -10,9 +10,161 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <link rel="manifest" href="manifest.webmanifest" />
     <meta name="theme-color" content="#1976d2" />
+    <style>
+      .app-shell {
+        position: absolute;
+        width: 100%;
+      }
+      .app-shell header {
+        background-color: #000;
+        display: flex;
+        align-items: center;
+        color: #fff;
+        padding: 1rem;
+        box-shadow: rgb(0 0 0 / 10%) 0px 10px 15px -3px,
+          rgb(0 0 0 / 5%) 0px 4px 6px -2px;
+        z-index: 9;
+        position: fixed;
+        width: 100%;
+      }
+      .app-shell h1 {
+        padding: 0.5rem 1rem;
+        background-color: #ccc;
+        font-weight: bold;
+        margin-right: 2rem;
+        border-radius: 0.2rem;
+        color: #000;
+      }
+      .app-shell footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 2rem;
+        background-color: #010101;
+        color: #fff;
+        padding: 1.2rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        z-index: 1;
+      }
+      .app-shell footer strong {
+        font-size: 1rem;
+        text-transform: uppercase;
+        font-weight: bold;
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+      .app-shell footer p {
+        font-size: 0.9rem;
+        font-weight: 500;
+        margin: 0.5rem;
+        text-align: center;
+      }
+      .app-shell footer a {
+        color: #6495ed;
+      }
+
+      .app-shell .loading-container {
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: #00000070;
+        z-index: 1000;
+        overflow: hidden;
+        text-transform: uppercase;
+        text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        color: #131a20;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen-Sans, Ubuntu, Cantarell, Helvetica, sans-serif;
+        font-size: 1.4rem;
+      }
+
+      .app-shell .container-animation {
+        position: relative;
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+        width: auto;
+        height: auto;
+        background-color: #ffffff90;
+        padding: 2rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        border-radius: 0.5rem;
+        overflow: hidden;
+        text-align: center;
+      }
+
+      .app-shell .lds-dual-ring {
+        display: inline-block;
+        width: 64px;
+        height: 64px;
+        padding-bottom: 1em;
+      }
+
+      .app-shell .lds-dual-ring:after {
+        content: " ";
+        display: block;
+        width: 46px;
+        height: 46px;
+        margin: 1px;
+        border-radius: 50%;
+        border: 8px solid #131a20;
+        border-color: #131a20 transparent #131a20 transparent;
+        animation: lds-dual-ring 1.2s linear infinite;
+      }
+
+      @keyframes lds-dual-ring {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
   </head>
   <body>
-    <app-root>Loading Data... <br />Please wait a moment</app-root>
+    <app-root>
+      <div class="app-shell">
+        <header>
+          <h1><a routerLink="/">The Movie Database</a></h1>
+        </header>
+        <main class="main-content">
+          <div class="container">
+            <div class="loading-container">
+              <div class="container-animation">
+                <div class="lds-dual-ring"></div>
+                Loading Data... <br />Please wait a moment
+              </div>
+            </div>
+          </div>
+        </main>
+        <footer>
+          <p>
+            <strong>Let&apos;s talk about TMDb</strong> The Movie Database
+            (TMDb) is a community built movie and TV database.
+          </p>
+          <p>
+            <a
+              href="https://www.themoviedb.org/account/signup"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <b>Sign up for an account</b>
+            </a>
+          </p>
+        </footer>
+      </div>
+    </app-root>
     <noscript
       >Please enable JavaScript to continue using this application.</noscript
     >
