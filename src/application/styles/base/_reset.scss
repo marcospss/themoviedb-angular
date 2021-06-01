@@ -341,6 +341,10 @@ em {
  */
 img {
   border-style: none;
+  outline: none;
+  width: 100%;
+  height: auto;
+  object-fit: fill;
 }
 /**
  * Hide SVG overflow in IE

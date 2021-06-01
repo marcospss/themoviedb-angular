@@ -1,11 +1,8 @@
 <header>
-  <figure>
-    <img
-      [src]="helpersService.mediaImage(media.backdrop_path, sizeImage)"
-      [alt]="media.title"
-    />
-    <figcaption>{{ media.title }}</figcaption>
-  </figure>
+  <app-image-lazyload
+    [src]="helpersService.mediaImage(media.backdrop_path, sizeImage)"
+    [alt]="media.title"
+  ></app-image-lazyload>
   <h1>
     <a [routerLink]="['/details/movie', media.id]">
       {{ media.title }}

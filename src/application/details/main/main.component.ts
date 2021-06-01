@@ -39,17 +39,17 @@ export class MainComponent implements OnInit, OnDestroy, DoCheck {
   ngOnInit(): void {
     this.subscriptionRoute = this.route.params
       .pipe(
-        map(({ mediaId, mediaType }) => {
+        map(({ mediaId }) => {
           this.details$ = this.moviesService.details({ mediaId }).pipe(
-            catchError((error) => {
+            catchError(() => {
               this.hasError = true;
-              console.info('hasError', this.hasError);
               return of({} as MoviesDetails);
             })
           );
           this.recommendations$ = this.moviesService.recommendations({
             mediaId,
           });
+          this.helpersService.scrollTopPage();
         })
       )
       .subscribe();
@@ -60,7 +60,7 @@ export class MainComponent implements OnInit, OnDestroy, DoCheck {
   }
 
   ngDoCheck(): void {
-    this.helpersService.scrollTopPage();
+    // this.helpersService.scrollTopPage();
   }
 
   trackByFn(_: any, item: MovieItem) {

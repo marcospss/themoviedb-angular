@@ -13,21 +13,15 @@
         </li>
       </ul>
     </nav>
-
-    <figure>
-      <img
-        class="full-size"
-        [src]="helpersService.mediaImage(details.backdrop_path!, backdropSize)"
-        [alt]="details.title"
-      />
-    </figure>
+    <app-image-lazyload
+      [src]="helpersService.mediaImage(details.backdrop_path!, backdropSize)"
+      [alt]="details.title"
+    ></app-image-lazyload>
     <header>
-      <figure>
-        <img
-          [src]="helpersService.mediaImage(details.poster_path!, posterSize)"
-          [alt]="details.title"
-        />
-      </figure>
+      <app-image-lazyload
+        [src]="helpersService.mediaImage(details.poster_path!, posterSize)"
+        [alt]="details.title"
+      ></app-image-lazyload>
       <div class="info">
         <h1 class="title">{{ details.title }}</h1>
         <p class="category">{{ helpersService.genres(details.genres) }}</p>

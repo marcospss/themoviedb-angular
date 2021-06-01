@@ -10,6 +10,7 @@ import { CardPosterComponent } from './card-poster/card-poster.component';
 import { ModalComponent } from './modal/modal.component';
 import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 import { AlertsComponent } from './alerts/alerts.component';
+import { ImageLazyloadComponent } from './image-lazyload/image-lazyload.component';
 
 const components = [
   HeaderComponent,
@@ -20,6 +21,7 @@ const components = [
   ModalComponent,
   ErrorDialogComponent,
   AlertsComponent,
+  ImageLazyloadComponent,
 ];
 
 @NgModule({

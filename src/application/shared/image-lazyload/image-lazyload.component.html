@@ -1,0 +1,4 @@
+<div *ngIf="!state.loaded" class="animated-background"></div>
+<figure *ngIf="state.visible">
+  <img [hidden]="!state.loaded" (load)="onLoad()" [src]="src" [alt]="alt" />
+</figure>
