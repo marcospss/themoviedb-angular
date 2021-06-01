@@ -5,10 +5,10 @@
     "ng": "ng",
     "setEnv": "ts-node ./src/assets/scripts/setEnv.ts",
     "start": "npm run setEnv -- --environment=dev && ng serve",
-    "build": "npm run setEnv -- --environment=prod && ng build",
+    "build": "npm run setEnv -- --environment=prod && ng build --prod",
     "test": "npm run setEnv -- --environment=dev && ng test --watch false --browsers ChromeHeadless --code-coverage",
     "lint": "ng lint",
-    "start:pwa": "yarn run app-shell:prod && ng build --prod && http-server -p 8080 -c-1 dist/themoviedb-angular",
+    "start:pwa": "yarn run app-shell:prod && ng build --prod && http-server -p 8080 -c-1 dist/themoviedb-angular/browser",
     "app-shell:dev": "ng run themoviedb-angular:app-shell",
     "app-shell:prod": "ng run themoviedb-angular:app-shell:production"
   },
