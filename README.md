@@ -16,6 +16,7 @@ Aplicação com Angular na versão 11
 
 ### pwa
 Aplicação com a implementação de PWA utilizando o pacote `@angular/service-worker`
+[DEMO APP](https://pwa-themoviedb-angular.netlify.app/)
 
 
 
