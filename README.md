@@ -11,11 +11,19 @@ API_KEY=API KEY TMDB
 ```
 ## Branches
 
+---
 ### main
 Aplicação com Angular na versão 11
 
+---
 ### pwa
 Aplicação com a implementação de PWA utilizando o pacote `@angular/service-worker`
 
+> [DEMO APP PWA](https://pwa-themoviedb-angular.netlify.app/)
+
+---
+
 ### universal
 Aplicação com a renderização do lado do servidor utilizando o pacote `@nguniversal/express-engine`
+
+---
